@@ -135,4 +135,4 @@ if [[ -z "$GH_USER" ]]; then
   fi
 fi
 
-curl "https://github-contributions-api.deno.dev/${GH_USER}.term${OPTS}"
+curl -sS "https://github-contributions-api.deno.dev/${GH_USER}.term${OPTS}"
