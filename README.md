@@ -24,6 +24,35 @@ gh extension list
 gh extension upgrade kawarimidoll/gh-graph
 ```
 
+### Installation with Nix / home-manager
+
+Add the input to your `flake.nix`:
+
+```nix
+{
+  inputs = {
+    gh-graph = {
+      url = "github:kawarimidoll/gh-graph";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+}
+```
+
+Then add it to `programs.gh.extensions`:
+
+```nix
+{ inputs, pkgs, ... }:
+{
+  programs.gh = {
+    enable = true;
+    extensions = [
+      inputs.gh-graph.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+  };
+}
+```
+
 ## Usage
 
 Simply run:
